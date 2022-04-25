@@ -17,7 +17,7 @@ const main = async () => {
 
         const query = request.params.query;
         const scrapeURLS = await scraper.getImages(query)
-        response.send(request.params.query);
+        response.send(scrapeURLS);
     });
     app.listen(port);
 }

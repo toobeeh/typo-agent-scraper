@@ -63,7 +63,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                                 return [4 /*yield*/, scraper.getImages(query)];
                             case 1:
                                 scrapeURLS = _a.sent();
-                                response.send(request.params.query);
+                                response.send(scrapeURLS);
                                 return [2 /*return*/];
                         }
                     });
