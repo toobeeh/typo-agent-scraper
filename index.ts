@@ -13,8 +13,11 @@ const main = async () => {
     console.log("Starting express server for API access");
     
     const app = express();
-    app.get("/", (request, response) => {
-        response.send(request.params);
+    app.get("/:query", async (request, response) => {
+
+        const query = request.params.query;
+        const scrapeURLS = await scraper.getImages(query)
+        response.send(request.params.query);
     });
     app.listen(port);
 }

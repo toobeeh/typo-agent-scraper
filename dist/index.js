@@ -54,9 +54,20 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 _a.sent();
                 console.log("Starting express server for API access");
                 app = (0, express_1.default)();
-                app.get("/", function (request, response) {
-                    response.send(request.params);
-                });
+                app.get("/:query", function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
+                    var query, scrapeURLS;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                query = request.params.query;
+                                return [4 /*yield*/, scraper.getImages(query)];
+                            case 1:
+                                scrapeURLS = _a.sent();
+                                response.send(request.params.query);
+                                return [2 /*return*/];
+                        }
+                    });
+                }); });
                 app.listen(port);
                 return [2 /*return*/];
         }
