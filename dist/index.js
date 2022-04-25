@@ -51,7 +51,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 return [4 /*yield*/, scraper.launch()];
             case 1:
                 _a.sent();
-                console.log("Starting express server for API");
+                console.log("Starting express server for API access");
                 app = (0, express_1.default)();
                 app.get("/", function (request, response) {
                     response.send(request.params);

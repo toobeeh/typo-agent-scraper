@@ -8,7 +8,7 @@ const main = async () => {
     const scraper = new ImageAgentScraper();
     await scraper.launch();
     
-    console.log("Starting express server for API");
+    console.log("Starting express server for API access");
     
     const app = express();
     app.get("/", (request, response) => {
