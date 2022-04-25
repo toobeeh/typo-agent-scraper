@@ -41,8 +41,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var imageAgentScraper_1 = __importDefault(require("./imageAgentScraper"));
 var express_1 = __importDefault(require("express"));
+var cors_1 = __importDefault(require("cors"));
 // get heroku port
 var port = process.env.PORT || 3000;
+// set CORS options
+var corsConfig = {
+    origin: "https://skribbl.io"
+};
 var main = function () { return __awaiter(void 0, void 0, void 0, function () {
     var scraper, app;
     return __generator(this, function (_a) {
@@ -55,6 +60,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 _a.sent();
                 console.log("Starting express server for API access");
                 app = (0, express_1.default)();
+                app.use((0, cors_1.default)(corsConfig));
                 app.get("/:query", function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
                     var query, scrapeURLS;
                     return __generator(this, function (_a) {

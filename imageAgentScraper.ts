@@ -23,13 +23,19 @@ export default class ImageAgentScraper{
      */
     async getImages(query: string){
 
+        // check if browser was launched previously
         if(!this.browser) throw new Error("Browser not launched");
 
+        // open a new page with duckduckgo results
         const page = await this.browser.newPage();
         await page.goto(`https://duckduckgo.com/?q=${encodeURI(query)}&t=h_&iax=images&ia=images`, {waitUntil: 'domcontentloaded'});
         await page.waitFor(1000);
-        const images = await page.evaluate(() => Array.from(document.images, e => e.src));
+        let images = await page.evaluate(() => Array.from(document.images, e => e.src));
         page.close();
+
+        // filter images
+        images = images.filter(image => image != "");
+
         return images;
     }
 }

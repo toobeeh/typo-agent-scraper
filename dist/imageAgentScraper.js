@@ -76,6 +76,7 @@ var ImageAgentScraper = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        // check if browser was launched previously
                         if (!this.browser)
                             throw new Error("Browser not launched");
                         return [4 /*yield*/, this.browser.newPage()];
@@ -91,6 +92,8 @@ var ImageAgentScraper = /** @class */ (function () {
                     case 4:
                         images = _a.sent();
                         page.close();
+                        // filter images
+                        images = images.filter(function (image) { return image != ""; });
                         return [2 /*return*/, images];
                 }
             });

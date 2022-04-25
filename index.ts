@@ -1,8 +1,14 @@
 import ImageAgentScraper from "./imageAgentScraper";
 import express from "express";
+import cors from "cors";
 
 // get heroku port
 const port = process.env.PORT || 3000;
+
+// set CORS options
+const corsConfig = {
+    origin: "https://skribbl.io"
+};
 
 const main = async () => {
 
@@ -14,8 +20,9 @@ const main = async () => {
     
     console.log("Starting express server for API access");
     
-    // init express app and listen for requests on root
+    // init express app with cors and listen for requests on root
     const app = express();
+    app.use(cors(corsConfig));
     app.get("/:query", async (request, response) => {
 
         // get query fromurl param and scrape images
