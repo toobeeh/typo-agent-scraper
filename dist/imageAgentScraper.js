@@ -44,6 +44,9 @@ var ImageAgentScraper = /** @class */ (function () {
     function ImageAgentScraper() {
         this.browser = undefined;
     }
+    /**
+     * launch the scraper browser
+     */
     ImageAgentScraper.prototype.launch = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _a;
@@ -62,6 +65,11 @@ var ImageAgentScraper = /** @class */ (function () {
             });
         });
     };
+    /**
+     * screape duckduckgo for images
+     * @param query the image search query
+     * @returns array of all result images
+     */
     ImageAgentScraper.prototype.getImages = function (query) {
         return __awaiter(this, void 0, void 0, function () {
             var page, images;

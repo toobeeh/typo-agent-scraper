@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var imageAgentScraper_1 = __importDefault(require("./imageAgentScraper"));
 var express_1 = __importDefault(require("express"));
+// get heroku port
 var port = process.env.PORT || 3000;
 var main = function () { return __awaiter(void 0, void 0, void 0, function () {
     var scraper, app;
@@ -60,14 +61,18 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                         switch (_a.label) {
                             case 0:
                                 query = request.params.query;
-                                return [4 /*yield*/, scraper.getImages(query)];
+                                return [4 /*yield*/, scraper.getImages(query)
+                                    // respond with scraped URLS
+                                ];
                             case 1:
                                 scrapeURLS = _a.sent();
+                                // respond with scraped URLS
                                 response.send(scrapeURLS);
                                 return [2 /*return*/];
                         }
                     });
                 }); });
+                // start listening
                 app.listen(port);
                 return [2 /*return*/];
         }

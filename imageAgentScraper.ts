@@ -6,6 +6,9 @@ export default class ImageAgentScraper{
 
     constructor(){ }
 
+    /**
+     * launch the scraper browser
+     */
     async launch(){
         this.browser = await puppeteer.launch({
             headless: true,
@@ -13,6 +16,11 @@ export default class ImageAgentScraper{
         });
     }
 
+    /**
+     * screape duckduckgo for images
+     * @param query the image search query
+     * @returns array of all result images
+     */
     async getImages(query: string){
 
         if(!this.browser) throw new Error("Browser not launched");
