@@ -1,6 +1,8 @@
 import ImageAgentScraper from "./imageAgentScraper";
 import express from "express";
 
+const port = process.env.PORT || 3000;
+
 const main = async () => {
 
     console.log("Starting puppeteer scraper instance");
@@ -14,7 +16,7 @@ const main = async () => {
     app.get("/", (request, response) => {
         response.send(request.params);
     });
-    app.listen(80);
+    app.listen(port);
 }
 
 main();

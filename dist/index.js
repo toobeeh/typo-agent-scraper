@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var imageAgentScraper_1 = __importDefault(require("./imageAgentScraper"));
 var express_1 = __importDefault(require("express"));
+var port = process.env.PORT || 3000;
 var main = function () { return __awaiter(void 0, void 0, void 0, function () {
     var scraper, app;
     return __generator(this, function (_a) {
@@ -56,7 +57,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 app.get("/", function (request, response) {
                     response.send(request.params);
                 });
-                app.listen(80);
+                app.listen(port);
                 return [2 /*return*/];
         }
     });
