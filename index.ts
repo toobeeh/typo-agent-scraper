@@ -12,7 +12,7 @@ const corsConfig = {
 
 const main = async () => {
 
-    console.log("Starting puppeteer scraper instance");
+    console.log("Starting puppeteer image scraper instance");
 
     // launch puppeteer chrome scraper
     const scraper = new ImageAgentScraper();
