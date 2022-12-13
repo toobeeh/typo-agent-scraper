@@ -27,8 +27,9 @@ export default class ImageAgentScraper{
         if(!this.browser) throw new Error("Browser not launched");
 
         // open a new page with duckduckgo results
+        // qwant https://www.qwant.com/?l=de&q=ice+king&t=images
         const page = await this.browser.newPage();
-        await page.goto(`https://duckduckgo.com/?q=${encodeURI(query)}&t=h_&iax=images&ia=images`, {waitUntil: 'domcontentloaded'});
+        await page.goto(`https://www.qwant.com/?q=${encodeURI(query)}&t=h_&iax=images&t=images`, {waitUntil: 'domcontentloaded'});
         await page.waitFor(1000);
         let images = await page.evaluate(() => Array.from(document.images, e => e.src));
         page.close();
