@@ -82,7 +82,7 @@ var ImageAgentScraper = /** @class */ (function () {
                         return [4 /*yield*/, this.browser.newPage()];
                     case 1:
                         page = _a.sent();
-                        return [4 /*yield*/, page.goto("https://duckduckgo.com/?q=" + encodeURI(query) + "&t=h_&iax=images&ia=images", { waitUntil: 'domcontentloaded' })];
+                        return [4 /*yield*/, page.goto("https://www.qwant.com/?q=" + encodeURI(query) + "&t=h_&iax=images&t=images", { waitUntil: 'domcontentloaded' })];
                     case 2:
                         _a.sent();
                         return [4 /*yield*/, page.waitFor(1000)];

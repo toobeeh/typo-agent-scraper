@@ -31,7 +31,9 @@ export default class ImageAgentScraper{
         const page = await this.browser.newPage();
         await page.goto(`https://www.qwant.com/?q=${encodeURI(query)}&t=h_&iax=images&t=images`, {waitUntil: 'domcontentloaded'});
         await page.waitFor(1000);
-        let images = await page.evaluate(() => Array.from(document.images, e => e.src));
+
+        // @ts-ignore
+        let images = await page.evaluate(() =>  Array.from(document.images, e => e.src));
         page.close();
 
         // filter images

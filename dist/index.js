@@ -53,7 +53,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                console.log("Starting puppeteer scraper instance");
+                console.log("Starting puppeteer image scraper instance");
                 scraper = new imageAgentScraper_1.default();
                 return [4 /*yield*/, scraper.launch()];
             case 1:
