@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -56,6 +56,7 @@ var ImageAgentScraper = /** @class */ (function () {
                         _a = this;
                         return [4 /*yield*/, puppeteer_1.default.launch({
                                 headless: true,
+                                executablePath: '/usr/bin/google-chrome',
                                 args: ['--no-sandbox', '--disable-setuid-sandbox']
                             })];
                     case 1:
@@ -82,7 +83,7 @@ var ImageAgentScraper = /** @class */ (function () {
                         return [4 /*yield*/, this.browser.newPage()];
                     case 1:
                         page = _a.sent();
-                        return [4 /*yield*/, page.goto("https://www.qwant.com/?q=" + encodeURI(query) + "&t=h_&iax=images&t=images", { waitUntil: 'domcontentloaded' })];
+                        return [4 /*yield*/, page.goto("https://www.qwant.com/?q=".concat(encodeURI(query), "&t=h_&iax=images&t=images"), { waitUntil: 'domcontentloaded' })];
                     case 2:
                         _a.sent();
                         return [4 /*yield*/, page.waitFor(1000)];

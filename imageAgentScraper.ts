@@ -1,17 +1,18 @@
 import puppeteer from "puppeteer";
 
-export default class ImageAgentScraper{
+export default class ImageAgentScraper {
 
     browser?: puppeteer.Browser = undefined;
 
-    constructor(){ }
+    constructor() { }
 
     /**
      * launch the scraper browser
      */
-    async launch(){
+    async launch() {
         this.browser = await puppeteer.launch({
             headless: true,
+            executablePath: '/usr/bin/google-chrome',
             args: ['--no-sandbox', '--disable-setuid-sandbox']
         });
     }
@@ -21,19 +22,19 @@ export default class ImageAgentScraper{
      * @param query the image search query
      * @returns array of all result images
      */
-    async getImages(query: string){
+    async getImages(query: string) {
 
         // check if browser was launched previously
-        if(!this.browser) throw new Error("Browser not launched");
+        if (!this.browser) throw new Error("Browser not launched");
 
         // open a new page with duckduckgo results
         // qwant https://www.qwant.com/?l=de&q=ice+king&t=images
         const page = await this.browser.newPage();
-        await page.goto(`https://www.qwant.com/?q=${encodeURI(query)}&t=h_&iax=images&t=images`, {waitUntil: 'domcontentloaded'});
+        await page.goto(`https://www.qwant.com/?q=${encodeURI(query)}&t=h_&iax=images&t=images`, { waitUntil: 'domcontentloaded' });
         await page.waitFor(1000);
 
         // @ts-ignore
-        let images = await page.evaluate(() =>  Array.from(document.images, e => e.src));
+        let images = await page.evaluate(() => Array.from(document.images, e => e.src));
         page.close();
 
         // filter images
