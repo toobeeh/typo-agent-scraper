@@ -30,21 +30,17 @@ export default class ImageAgentScraper {
         // open a new page with duckduckgo results
         // qwant https://www.qwant.com/?l=de&q=ice+king&t=images
         const page = await this.browser.newPage();
+        //await page.setJavaScriptEnabled(false);
 
-        page.on("request", request => {
-            if (request.resourceType() === "script") {
-                request.abort()
-            } else {
-                request.continue()
-            }
-        });
-
-        const url = `https://www.google.com/search?q=${encodeURI(query)}&tbm=isch`;
+        const url = `https://yandex.com/images/search?text=${encodeURI(query)}`;
+        //const url = `https://images.search.yahoo.com/search/images?p=${encodeURI(query)}`;
+        //const url = `https://www.google.com/search?q=${encodeURI(query)}&tbm=isch`;
         await page.goto(url, { waitUntil: 'domcontentloaded' });
-        await page.waitFor(1000);
+        //await page.waitFor(1000);
 
         // @ts-ignore
         let images = await page.evaluate(() => Array.from(document.images, e => e.src));
+        //let text = await page.evaluate(() => document.body.innerHTML);
         page.close();
 
         // filter images

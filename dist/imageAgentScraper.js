@@ -83,24 +83,18 @@ var ImageAgentScraper = /** @class */ (function () {
                         return [4 /*yield*/, this.browser.newPage()];
                     case 1:
                         page = _a.sent();
-                        page.on("request", function (request) {
-                            if (request.resourceType() === "script") {
-                                request.abort();
-                            }
-                            else {
-                                request.continue();
-                            }
-                        });
-                        url = "https://www.google.com/search?q=".concat(encodeURI(query), "&tbm=isch");
+                        url = "https://yandex.com/images/search?text=".concat(encodeURI(query));
+                        //const url = `https://images.search.yahoo.com/search/images?p=${encodeURI(query)}`;
+                        //const url = `https://www.google.com/search?q=${encodeURI(query)}&tbm=isch`;
                         return [4 /*yield*/, page.goto(url, { waitUntil: 'domcontentloaded' })];
                     case 2:
-                        _a.sent();
-                        return [4 /*yield*/, page.waitFor(1000)];
-                    case 3:
+                        //const url = `https://images.search.yahoo.com/search/images?p=${encodeURI(query)}`;
+                        //const url = `https://www.google.com/search?q=${encodeURI(query)}&tbm=isch`;
                         _a.sent();
                         return [4 /*yield*/, page.evaluate(function () { return Array.from(document.images, function (e) { return e.src; }); })];
-                    case 4:
+                    case 3:
                         images = _a.sent();
+                        //let text = await page.evaluate(() => document.body.innerHTML);
                         page.close();
                         // filter images
                         images = images.filter(function (image) { return image != ""; });
