@@ -30,7 +30,17 @@ export default class ImageAgentScraper {
         // open a new page with duckduckgo results
         // qwant https://www.qwant.com/?l=de&q=ice+king&t=images
         const page = await this.browser.newPage();
-        await page.goto(`https://www.qwant.com/?q=${encodeURI(query)}&t=h_&iax=images&t=images`, { waitUntil: 'domcontentloaded' });
+
+        page.on("request", request => {
+            if (request.resourceType() === "script") {
+                request.abort()
+            } else {
+                request.continue()
+            }
+        });
+
+        const url = `https://www.google.com/search?q=${encodeURI(query)}&tbm=isch`;
+        await page.goto(url, { waitUntil: 'domcontentloaded' });
         await page.waitFor(1000);
 
         // @ts-ignore
