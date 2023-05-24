@@ -1,7 +1,7 @@
 version: "1.0"
 
 services:
-  fastapi:
+  typo-agent:
     web:
       image: "ghcr.io/toobeeh/typo-agent-scraper/typo-agent-scraper-image:latest"
     ports:
