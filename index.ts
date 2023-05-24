@@ -2,8 +2,7 @@ import ImageAgentScraper from "./imageAgentScraper";
 import express from "express";
 import cors from "cors";
 
-// get heroku port
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 // set CORS options
 const corsConfig = {
@@ -17,9 +16,9 @@ const main = async () => {
     // launch puppeteer chrome scraper
     const scraper = new ImageAgentScraper();
     await scraper.launch();
-    
+
     console.log("Starting express server for API access");
-    
+
     // init express app with cors and listen for requests on root
     const app = express();
     app.use(cors(corsConfig));

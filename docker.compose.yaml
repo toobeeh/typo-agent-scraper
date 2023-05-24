@@ -1,0 +1,27 @@
+version: "1.0"
+
+services:
+  fastapi:
+    web:
+      image: "ghcr.io/toobeeh/typo-agent-scraper/typo-agent-scraper-image:latest"
+    ports:
+      - 3000:3000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.typo-agent.entrypoints=http"
+      - "traefik.http.routers.typo-agent.rule=Host(`agent.typo.rip`)"
+      - "traefik.http.routers.typo-agent.middlewares=https-redirect@file"
+      - "traefik.http.routers.typo-agent-secure.middlewares=secured@file"
+      - "traefik.http.routers.typo-agent-secure.entrypoints=https"
+      - "traefik.http.routers.typo-agent-secure.rule=Host(`agent.typo.rip`)"
+      - "traefik.http.routers.typo-agent-secure.tls=true"
+      - "traefik.http.routers.typo-agent-secure.tls.certresolver=http"
+      - "traefik.http.routers.typo-agent-secure.service=typo-agent"
+      - "traefik.http.services.typo-agent.loadbalancer.server.port=3000"
+      - "traefik.docker.network=web"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
