@@ -2,8 +2,7 @@ version: "1.0"
 
 services:
   typo-agent:
-    web:
-      image: "ghcr.io/toobeeh/typo-agent-scraper/typo-agent-scraper-image:latest"
+    image: "ghcr.io/toobeeh/typo-agent-scraper/typo-agent-scraper-image:latest"
     ports:
       - 3000:3000
     labels:
