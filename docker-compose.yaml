@@ -18,7 +18,7 @@ services:
       - "traefik.http.routers.typo-agent-secure.tls.certresolver=http"
       - "traefik.http.routers.typo-agent-secure.service=typo-agent"
       - "traefik.http.services.typo-agent.loadbalancer.server.port=3000"
-      - "traefik.docker.network=web"
+      - "traefik.docker.network=proxy"
     networks:
       - proxy
 
