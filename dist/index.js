@@ -42,8 +42,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var imageAgentScraper_1 = __importDefault(require("./imageAgentScraper"));
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
-// get heroku port
-var port = process.env.PORT || 3000;
+var port = 3000;
 // set CORS options
 var corsConfig = {
     origin: "https://skribbl.io"

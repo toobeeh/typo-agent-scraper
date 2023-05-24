@@ -73,7 +73,7 @@ var ImageAgentScraper = /** @class */ (function () {
      */
     ImageAgentScraper.prototype.getImages = function (query) {
         return __awaiter(this, void 0, void 0, function () {
-            var page, images;
+            var page, url, images;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -83,7 +83,16 @@ var ImageAgentScraper = /** @class */ (function () {
                         return [4 /*yield*/, this.browser.newPage()];
                     case 1:
                         page = _a.sent();
-                        return [4 /*yield*/, page.goto("https://www.qwant.com/?q=".concat(encodeURI(query), "&t=h_&iax=images&t=images"), { waitUntil: 'domcontentloaded' })];
+                        page.on("request", function (request) {
+                            if (request.resourceType() === "script") {
+                                request.abort();
+                            }
+                            else {
+                                request.continue();
+                            }
+                        });
+                        url = "https://www.google.com/search?q=".concat(encodeURI(query), "&tbm=isch");
+                        return [4 /*yield*/, page.goto(url, { waitUntil: 'domcontentloaded' })];
                     case 2:
                         _a.sent();
                         return [4 /*yield*/, page.waitFor(1000)];
