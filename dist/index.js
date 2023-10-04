@@ -61,19 +61,25 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 app = (0, express_1.default)();
                 app.use((0, cors_1.default)(corsConfig));
                 app.get("/:query", function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
-                    var query, scrapeURLS;
+                    var query, scrapeURLS, e_1;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
                                 query = request.params.query;
-                                return [4 /*yield*/, scraper.getImages(query)
-                                    // respond with scraped URLS
-                                ];
+                                _a.label = 1;
                             case 1:
+                                _a.trys.push([1, 3, , 4]);
+                                return [4 /*yield*/, scraper.getImages(query)];
+                            case 2:
                                 scrapeURLS = _a.sent();
                                 // respond with scraped URLS
                                 response.send(scrapeURLS);
-                                return [2 /*return*/];
+                                return [3 /*break*/, 4];
+                            case 3:
+                                e_1 = _a.sent();
+                                response.status(500).send(e_1);
+                                return [3 /*break*/, 4];
+                            case 4: return [2 /*return*/];
                         }
                     });
                 }); });

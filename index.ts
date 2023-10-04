@@ -26,10 +26,16 @@ const main = async () => {
 
         // get query fromurl param and scrape images
         const query = request.params.query;
-        const scrapeURLS = await scraper.getImages(query)
+        try {
 
-        // respond with scraped URLS
-        response.send(scrapeURLS);
+            const scrapeURLS = await scraper.getImages(query);
+
+            // respond with scraped URLS
+            response.send(scrapeURLS);
+        }
+        catch (e) {
+            response.status(500).send(e);
+        }
     });
 
     // start listening
